@@ -175,7 +175,7 @@ bool Algorithms::isBipartiteUtil(const Graph &g, size_t src, vector<int> &color,
 }
 
 bool Algorithms::negativeCycle(const Graph &g, size_t start)
-{   int size=g.getGraph().size();
+{   size_t size=g.getGraph().size();
     //two vectors:one for distance and one for parent
     vector<int> dist(size, std::numeric_limits<int>::infinity());
     vector<int> parent(size, -1);
@@ -243,7 +243,7 @@ void Algorithms::bfs(const Graph &graph, size_t start, vector<bool> &visited, ve
     }
 }
 string Algorithms::shortestPath(const Graph &g, size_t start, size_t end)
-{   int size=g.getGraph().size();
+{   size_t size=g.getGraph().size();
     //3 vectors that
     vector<bool> visit(size, false);
     vector<int> dist(size, std::numeric_limits<int>::infinity()); // 
@@ -296,40 +296,4 @@ string Algorithms::shortestPath(const Graph &g, size_t start, size_t end)
             return "-1";
         }
     }
-}
-
-bool Algorithms::bellmanFord(const Graph &g, size_t src, vector<int> &dist, vector<int> &parent)
-{
-
-    dist[src] = 0;
-    // Relax all edges in the graph
-    for (size_t i = 0; i < g.getGraph().size() - 1; ++i)
-    {
-        for (size_t u = 0; u < g.getGraph().size(); ++u)
-        {
-            for (size_t v = 0; v < g.getGraph().size(); ++v)
-            {
-                if (g.getGraph()[u][v] != 0 && dist[u] != std::numeric_limits<int>::infinity() && dist[u] + g.getGraph()[u][v] < dist[v])
-                {
-                    dist[v] = dist[u] + g.getGraph()[u][v];
-                    parent[v] = u;
-                }
-            }
-        }
-    }
-
-    // Check negative-weight for
-    for (size_t u = 0; u < g.getGraph().size(); ++u)
-    {
-        for (size_t v = 0; v < g.getGraph().size(); ++v)
-        {
-            if (g.getGraph()[u][v] != 0 && dist[u] != std::numeric_limits<int>::infinity() && dist[u] + g.getGraph()[u][v] < dist[v])
-            {
-                std::cout << "There is negative-weight cycle\n";
-                return false;
-            }
-        }
-    }
-
-    return true;
 }
