@@ -6,11 +6,6 @@
 //michaeldadush12@gmail.com
 //Michael dadush
 
-/*
- * Demo program for Exercise 2.
- * Author: Benjamin Saldman.
- */
-
 #include "Graph.hpp"
 #include "Algorithms.hpp"
 using ariel::Algorithms;
