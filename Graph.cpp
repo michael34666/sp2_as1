@@ -3,71 +3,61 @@
 //Michael dadush
 
 #include "Graph.hpp"
+using namespace ariel;
+using std::vector;
 
-using namespace ariel;  
 
-void Graph::loadGraph(const std::vector<std::vector<int> >& g1)
-{ 
-     if (g1.empty() ) {
-        throw std::invalid_argument("Invalid adjacency matrix: plase try again");
+    void Graph::loadGraph(const vector<vector<int>> new_graph) {
+    if (new_graph.size() != new_graph[0].size() || new_graph.empty() ) {
+        throw std:: invalid_argument("Error in load this grap");
     }
-    if(g1.size() != g1[0].size())
-    {
-      throw std::invalid_argument("Invalid graph: The graph is not a square matrix");
+    size=g.size();
+    this->g = new_graph; // Assign the provided adjacency matrix to the graph
+    this->graph_symmetric=true;
+    this->graph_weighted=false;
+        for (size_t i = 0; i < g.size(); i++) {
+            for (size_t j = 0; j < g[i].size(); j++) {
+                if(g[i][j] != g[j][i]){
+                    this->graph_symmetric=false;//graph directed
+                }
+                if(g[i][j]!=0 && g[i][j]!=1){
+                    this->graph_weighted=true;
+                }
+                if(this->graph_weighted==true && this->graph_symmetric==false){
+                    return;
+                }
+            }
+        }
+
     }
 
-    this->g = g1;
-    this->symmtric=true;
 
-     for (size_t i = 0; i < this->g.size(); i++) {
-
-       for (size_t j = 0; j < this->g[i].size(); j++) {  
-            if(i!=j){
-            if(this->g[i][j]!=this->g[j][i])
-            {
-                this->symmtric=false;//directed graph
+void const Graph::printGraph(){
+    int edges=0;
+    for (size_t i = 0; i < g.size(); ++i) {
+        for (size_t j = 0; j < g[i].size(); ++j) {
+            if(g[i][j] != 0){
+                edges++;
             }
-            }
-           
-           
+        
         }
     }
-   
-
-}
-//maybe need const func
-void Graph::printGraph () 
-{   
-    // Should print: "Graph with 5 vertices and 8 edges."
-     this->size = this->g.size();
-     int m = 0;
-    
-  for (size_t i = 0; i < this->size; ++i) {
-
-       for (size_t j = 0; j < g[i].size(); ++j) {  
-            if (this->g[i][j]!= 0) {
-                m++;
-            }  
-        }
+    if(getSymmetricAdjMat()){
+        edges=edges/2;
     }
-    if(!getSymmtricAdjMtrix())//undirected graph
-    {
-      m=m/2;
+    std:: cout << "Graph with " << g.size() << " vertices and " << edges << " edges." << std :: endl;
+        
     }
-    std::cout<<"Graph with "<<this->size<<" vertices and "<<m<< " edges "<<std::endl;
-}
 
-std::vector<std::vector<int> > Graph::getGraph() const 
-{ 
-    return this->g;
-}
+    vector <vector<int>> Graph ::getGraph() const{
+        return this -> g;
+    }
+     bool Graph::getSymmetricAdjMat() const{
+        return this -> graph_symmetric;
 
-//no directed graph if true
-bool Graph:: getSymmtricAdjMtrix() const
-{
- return this->symmtric;
-}
-
-
-
+    }
+     bool Graph::getWeight() const{
+        return this -> graph_weighted;
+     
+    }
 

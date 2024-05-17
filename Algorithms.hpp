@@ -2,6 +2,7 @@
 //michaeldadush12@gmail.com
 //Michael dadush
 
+
 #include "Graph.hpp" 
 #include <unordered_set>
 #include <iostream>
@@ -11,6 +12,7 @@
 #include <string>
 #pragma once
 using std::vector;
+using std::string;
 using std::pair;
 namespace ariel 
 {
@@ -18,16 +20,16 @@ namespace ariel
 class Algorithms    
 {
     public:
-    static bool isConnected(const Graph& g);
-    static void dfs(size_t v, vector<bool>& visited,const Graph& g);
-    static std::string isContainsCycle(const Graph& g);
-    static std::string isBipartite(const Graph& g);
-    static bool isBipartiteUtil(const Graph& g, size_t src, vector<int>& color, vector<int>& verticesA, vector<int>& verticesB) ;
-    static std::string containsCycleUtil(const Graph& g, size_t v, int parent, vector<bool>& visited);
-    static std::string shortestPath(const Graph& g, size_t start, size_t end);
-    static  void bfs(const Graph & graph, size_t start, vector<bool>& visited, vector<int>& distance, vector<int>& parent);
-    static bool bellmanFord(const Graph& g,size_t source,vector<int> distance,vector<int> parent);
-    static bool negativeCycle(const Graph& g, size_t src);
+    static bool isConnected(const Graph& );
+    static void dfs(size_t , vector<bool>& ,const Graph& );
+    static string isContainsCycle(const Graph& );
+    static string isBipartite(const Graph& );
+    static bool isBipartiteUtil(const Graph& , size_t , vector<int>& , vector<int>& , vector<int>& ) ;
+    static string containsCycleUtil(const Graph& , size_t , int , vector<bool>& );
+    static string shortestPath(const Graph& , size_t , size_t );
+    static  void bfs(const Graph & , size_t start, vector<bool>& , vector<int>& , vector<int>& );
+    static bool bellmanFord(const Graph& ,size_t ,vector<int> &,vector<int> &);
+    static bool negativeCycle(const Graph& , size_t );
 
 };
 

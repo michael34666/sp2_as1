@@ -13,14 +13,15 @@ namespace ariel{
     private:
     vector<vector<int> > g;
     int size;
-    bool symmtric;//undirected graph==true
+    bool graph_weighted;//undirected graph==true
+    bool graph_symmetric;
     
     public:
-    void  loadGraph (const std::vector<std::vector<int> >& g1);
-    void printGraph () ;
+    void  loadGraph (const vector<vector<int> >);
+    void const printGraph();
     vector<vector<int> > getGraph() const ;
-    bool getSymmtricAdjMtrix() const;//undirected graph if true , false directed
-    
+    bool getSymmetricAdjMat() const;
+    bool getWeight() const;
    
  };
 
